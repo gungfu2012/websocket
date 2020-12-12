@@ -17,7 +17,14 @@ import (
 var addr = flag.String("addr", ":8080", "http service address")
 //var addr = flag.String("addr", "localhost:8080", "http service address")
 
-var upgrader = websocket.Upgrader{} // use default options
+func checkOrigin(r *http.Request) {
+	log.Println("current check OriginHostName")
+	return true
+}
+
+var upgrader = websocket.Upgrader{
+	CheckOrigin: checkOrigin,
+} // use default options
 
 func echo(w http.ResponseWriter, r *http.Request) {
 log.Println("we got a ws request")
