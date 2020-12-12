@@ -44,7 +44,7 @@ log.Println("we got a ws request")
 
 func home(w http.ResponseWriter, r *http.Request) {
 	log.Println("we got a home request")
-homeTemplate.Execute(w, "ws://"+r.Host+"/echo")
+homeTemplate.Execute(w, "wss://"+r.Host+"/echo")
 }
 
 func main() {
