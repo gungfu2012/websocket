@@ -20,6 +20,7 @@ var addr = flag.String("addr", ":8080", "http service address")
 var upgrader = websocket.Upgrader{} // use default options
 
 func echo(w http.ResponseWriter, r *http.Request) {
+log.Println("we got a ws request")
 	c, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Print("upgrade:", err)
@@ -42,7 +43,8 @@ func echo(w http.ResponseWriter, r *http.Request) {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	homeTemplate.Execute(w, "wss://"+r.Host+"/echo")
+	log.Println("we got a home request")
+homeTemplate.Execute(w, "ws://"+r.Host+"/echo")
 }
 
 func main() {
