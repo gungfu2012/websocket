@@ -17,7 +17,7 @@ import (
 var addr = flag.String("addr", ":8080", "http service address")
 //var addr = flag.String("addr", "localhost:8080", "http service address")
 
-func checkOrigin(r *http.Request) {
+func checkOrigin(r *http.Request) bool {
 	log.Println("current check OriginHostName")
 	return true
 }
